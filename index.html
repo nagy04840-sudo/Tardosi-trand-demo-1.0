@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tardosi Trans – Nemzetközi és Belföldi Fuvarozás | Bemutató Koncepció</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#040d1a',
+                            900: '#0a192f',
+                            800: '#112240',
+                            700: '#1d3557',
+                        },
+                        brand: {
+                            cyan: '#06b6d4',
+                            blue: '#0284c7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(17, 34, 64, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.15) 0%, rgba(10, 25, 47, 0.95) 50%, #040d1a 100%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- JOGI ÉS KONCEPCIÓ FIGYELMEZTETŐ SÁV -->
+    <div class="bg-amber-500 text-navy-950 text-xs sm:text-sm font-bold py-2.5 px-4 text-center sticky top-0 z-50 shadow-md border-b border-amber-600">
+        <span data-hu="⚠️ NEM HIVATALOS BEMUTATÓ KONCEPCIÓ – NEM A CÉG MEGBÍZÁSÁBÓL KÉSZÜLT. Készítette: Transport Digital" 
+              data-en="⚠️ UNOFFICIAL DEMO CONCEPT – NOT COMMISSIONED BY THE COMPANY. Created by: Transport Digital">
+            ⚠️ NEM HIVATALOS BEMUTATÓ KONCEPCIÓ – NEM A CÉG MEGBÍZÁSÁBÓL KÉSZÜLT. Készítette: Transport Digital
+        </span>
+    </div>
+
+    <!-- NAVIGÁCIÓ -->
+    <header class="bg-navy-900 text-white sticky top-[38px] sm:top-[41px] z-40 border-b border-slate-800/80 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <!-- Logó -->
+                <a href="#top" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-navy-950 font-extrabold text-xl shadow-lg group-hover:scale-105 transition">
+                        TT
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-lg sm:text-xl tracking-tight text-white block leading-none">TARDOSI TRANS</span>
+                        <span class="text-[11px] text-cyan-400 tracking-widest uppercase font-semibold">SEFTA-KER Kft.</span>
+                    </div>
+                </a>
+
+                <!-- Asztali menü -->
+                <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-slate-300">
+                    <a href="#szolgaltatasok" class="hover:text-cyan-400 transition" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</a>
+                    <a href="#rolunk" class="hover:text-cyan-400 transition" data-hu="Történetünk" data-en="Our Story">Történetünk</a>
+                    <a href="#flotta" class="hover:text-cyan-400 transition" data-hu="Flotta & GPS" data-en="Fleet & GPS">Flotta & GPS</a>
+                    <a href="#telephely" class="hover:text-cyan-400 transition" data-hu="Telephely" data-en="Depot Services">Telephely</a>
+                    <a href="#folyamat" class="hover:text-cyan-400 transition" data-hu="Folyamat" data-en="Process">Folyamat</a>
+                    <a href="#kapcsolat" class="hover:text-cyan-400 transition" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</a>
+                </nav>
+
+                <!-- Nyelvválasztó + CTA + Mobil gomb -->
+                <div class="flex items-center space-x-3">
+                    <button id="langToggle" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-md bg-navy-800 hover:bg-navy-700 border border-cyan-500/40 text-cyan-300 text-xs sm:text-sm font-semibold transition flex items-center space-x-1">
+                        <span>🌐</span>
+                        <span id="langLabel">EN</span>
+                    </button>
+                    <a href="#ajanlat" class="hidden sm:inline-flex items-center px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-bold text-sm transition shadow-md shadow-cyan-500/20" data-hu="Ajánlatkérés" data-en="Get a Quote">
+                        Ajánlatkérés
+                    </a>
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-md text-slate-300 hover:text-white hover:bg-navy-800 focus:outline-none" aria-label="Menü">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobil lenyíló menü -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-navy-800 border-t border-slate-700 px-4 pt-3 pb-5 space-y-2">
+            <a href="#szolgaltatasok" onclick="closeMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</a>
+            <a href="#rolunk" onclick="closeMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" data-hu="Történetünk" data-en="Our Story">Történetünk</a>
+            <a href="#flotta" onclick="closeMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" data-hu="Flotta & GPS" data-en="Fleet & GPS">Flotta & GPS</a>
+            <a href="#telephely" onclick="closeMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" data-hu="Telephelyi szolgáltatások" data-en="Depot Services">Telephelyi szolgáltatások</a>
+            <a href="#folyamat" onclick="closeMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" data-hu="Fuvarozási folyamat" data-en="Transport Process">Fuvarozási folyamat</a>
+            <a href="#kapcsolat" onclick="closeMobileMenu()" class="block py-2 text-slate-200 hover:text-cyan-400 font-medium" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</a>
+            <a href="#ajanlat" onclick="closeMobileMenu()" class="block mt-3 text-center py-2.5 rounded-lg bg-cyan-500 text-navy-950 font-bold" data-hu="Ajánlatkérés" data-en="Get a Quote">Ajánlatkérés</a>
+        </div>
+    </header>
+
+    <!-- 1. FŐOLDALI BEMUTATKOZÁS (HERO) -->
+    <section id="top" class="hero-gradient text-white py-16 sm:py-24 lg:py-28 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs sm:text-sm font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <span data-hu="Szakértelem és megbízhatóság 1989 óta" data-en="Expertise and Reliability Since 1989">Szakértelem és megbízhatóság 1989 óta</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        <span data-hu="Precíz nemzetközi és belföldi " data-en="Precision International & Domestic ">Precíz nemzetközi és belföldi </span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400" data-hu="fuvarozás." data-en="Freight Transport.">fuvarozás.</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed" 
+                       data-hu="36 korszerű Euro 6-os járműből álló flottával, 0–24 órás GPS-nyomon követéssel és teljes körű biztosítási háttérrel állunk partnereink rendelkezésére Hernádkakról Európa útjain."
+                       data-en="With a modern fleet of 36 Euro 6 vehicles, 24/7 GPS tracking, and comprehensive cargo insurance, we serve our partners from Hernádkak across European roads.">
+                        36 korszerű Euro 6-os járműből álló flottával, 0–24 órás GPS-nyomon követéssel és teljes körű biztosítási háttérrel állunk partnereink rendelkezésére Hernádkakról Európa útjain.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <a href="#ajanlat" class="px-6 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-bold text-center transition shadow-lg shadow-cyan-500/25" data-hu="Gyors fuvardíj ajánlat" data-en="Request a Freight Quote">
+                            Gyors fuvardíj ajánlat
+                        </a>
+                        <a href="#flotta" class="px-6 py-3.5 rounded-xl bg-navy-800 hover:bg-navy-700 border border-slate-600 text-white font-semibold text-center transition" data-hu="Flotta megtekintése" data-en="Explore Our Fleet">
+                            Flotta megtekintése
+                        </a>
+                    </div>
+
+                    <!-- Kulcsszámok -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400">1989</div>
+                            <div class="text-xs sm:text-sm text-slate-400" data-hu="Alapítás éve" data-en="Founded">Alapítás éve</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400">36 db</div>
+                            <div class="text-xs sm:text-sm text-slate-400" data-hu="Euro 6 jármű" data-en="Euro 6 Vehicles">Euro 6 jármű</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400">100 000 €</div>
+                            <div class="text-xs sm:text-sm text-slate-400" data-hu="CMR biztosítás" data-en="CMR Insurance">CMR biztosítás</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EGYEDI SVG KAMION ILLUSZTRÁCIÓ -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-2xl p-6 shadow-2xl relative">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider">EURO 6 FLEET // GPS ACTIVE</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-xs font-semibold">ISO 9001 & 14001</span>
+                        </div>
+                        
+                        <!-- Egyedi vektorgrafikus nyerges szerelvény -->
+                        <svg viewBox="0 0 520 220" class="w-full h-auto drop-shadow-lg" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="trailerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#1e3a8a"/>
+                                    <stop offset="100%" stop-color="#0f172a"/>
+                                </linearGradient>
+                                <linearGradient id="cabGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#06b6d4"/>
+                                    <stop offset="100%" stop-color="#0284c7"/>
+                                </linearGradient>
+                                <linearGradient id="roadGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#06b6d4" stop-opacity="0"/>
+                                    <stop offset="50%" stop-color="#06b6d4" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Háttér GPS hullámok -->
+                            <circle cx="410" cy="45" r="18" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-opacity="0.4"/>
+                            <circle cx="410" cy="45" r="30" fill="none" stroke="#06b6d4" stroke-width="1" stroke-opacity="0.2"/>
+                            <circle cx="410" cy="45" r="4" fill="#22d3ee"/>
+
+                            <!-- Úttest -->
+                            <rect x="10" y="182" width="500" height="3" fill="url(#roadGrad)" rx="1.5"/>
+                            <line x1="40" y1="192" x2="480" y2="192" stroke="#334155" stroke-width="2" stroke-dasharray="14 10"/>
+
+                            <!-- Pótkocsi (Trailer) -->
+                            <rect x="25" y="45" width="315" height="105" rx="6" fill="url(#trailerGrad)" stroke="#38bdf8" stroke-width="2"/>
+                            <!-- Pótkocsi dizájn csíkok -->
+                            <path d="M 25 120 L 340 95 L 340 112 L 25 137 Z" fill="#06b6d4" fill-opacity="0.85"/>
+                            <path d="M 25 139 L 340 114 L 340 120 L 25 145 Z" fill="#ffffff" fill-opacity="0.9"/>
+                            <!-- Felirat a pótkocsin -->
+                            <text x="48" y="88" fill="#ffffff" font-family="Inter, sans-serif" font-weight="800" font-size="22" letter-spacing="1.5">TARDOSI TRANS</text>
+                            <text x="48" y="106" fill="#7dd3fc" font-family="Inter, sans-serif" font-weight="600" font-size="10" letter-spacing="2">INTERNATIONAL LOGISTICS</text>
+
+                            <!-- Alváz -->
+                            <rect x="40" y="150" width="420" height="12" rx="3" fill="#1e293b"/>
+
+                            <!-- Nyerges vontató (Kabinos rész) -->
+                            <path d="M 350 62 L 430 62 C 446 62 458 74 463 92 L 475 125 C 478 133 478 150 470 156 L 350 156 Z" fill="url(#cabGrad)" stroke="#bae6fd" stroke-width="1.5"/>
+                            <!-- Szélvédő -->
+                            <path d="M 426 70 L 448 70 L 460 105 L 426 105 Z" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.5"/>
+                            <!-- Oldalablak -->
+                            <rect x="385" y="70" width="34" height="35" rx="4" fill="#0f172a" stroke="#7dd3fc" stroke-width="1.5"/>
+                            <!-- Légterelő -->
+                            <path d="M 350 46 L 418 62 L 350 62 Z" fill="#0284c7"/>
+                            <!-- Hűtőrács és fényszóró -->
+                            <rect x="466" y="118" width="8" height="26" rx="2" fill="#0f172a"/>
+                            <rect x="468" y="142" width="9" height="6" rx="2" fill="#fef08a"/>
+
+                            <!-- Kerekek (Pótkocsi 3 tengely) -->
+                            <g fill="#0f172a" stroke="#94a3b8" stroke-width="3">
+                                <circle cx="80" cy="166" r="16"/>
+                                <circle cx="120" cy="166" r="16"/>
+                                <circle cx="160" cy="166" r="16"/>
+                                <!-- Vontató tengelyek -->
+                                <circle cx="372" cy="166" r="16"/>
+                                <circle cx="442" cy="166" r="16"/>
+                            </g>
+                            <!-- Felnik -->
+                            <g fill="#38bdf8">
+                                <circle cx="80" cy="166" r="6"/>
+                                <circle cx="120" cy="166" r="6"/>
+                                <circle cx="160" cy="166" r="6"/>
+                                <circle cx="372" cy="166" r="6"/>
+                                <circle cx="442" cy="166" r="6"/>
+                            </g>
+                        </svg>
+
+                        <div class="mt-4 grid grid-cols-2 gap-3 text-xs text-slate-300">
+                            <div class="bg-navy-900/80 p-2.5 rounded-lg border border-slate-700/70">
+                                <span class="text-slate-400 block" data-hu="Flotta típusok" data-en="Fleet Brands">Flotta típusok</span>
+                                <strong class="text-white">Volvo & DAF Euro 6</strong>
+                            </div>
+                            <div class="bg-navy-900/80 p-2.5 rounded-lg border border-slate-700/70">
+                                <span class="text-slate-400 block" data-hu="Bázis telephely" data-en="Main Depot">Bázis telephely</span>
+                                <strong class="text-white">Hernádkak (HU)</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. SZOLGÁLTATÁSOK -->
+    <section id="szolgaltatasok" class="py-16 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-cyan-600 font-bold tracking-wider uppercase text-xs sm:text-sm" data-hu="Fő tevékenységeink" data-en="Core Services">Fő tevékenységeink</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-900 mt-2" data-hu="Komplex szállítási és logisztikai megoldások" data-en="Comprehensive Transport & Logistics Solutions">Komplex szállítási és logisztikai megoldások</h2>
+                <p class="text-slate-600 mt-3 text-sm sm:text-base" data-hu="Rugalmas kapacitásokkal és több évtizedes tapasztalattal biztosítjuk árui célba juttatását belföldön és egész Európában." data-en="With flexible capacities and decades of experience, we ensure safe delivery domestically and across Europe.">
+                    Rugalmas kapacitásokkal és több évtizedes tapasztalattal biztosítjuk árui célba juttatását belföldön és egész Európában.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Kártya 1 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-cyan-500 hover:shadow-xl transition group">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 text-cyan-400 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-hu="Nemzetközi fuvarozás" data-en="International Freight">Nemzetközi fuvarozás</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed" data-hu="Teljes és részrakományok (FTL/LTL) gyors és pontos szállítása európai viszonylatokban, folyamatos diszpécseri felügyelettel." data-en="Fast and punctual delivery of full and part loads (FTL/LTL) across European routes with continuous dispatch supervision.">
+                        Teljes és részrakományok (FTL/LTL) gyors és pontos szállítása európai viszonylatokban, folyamatos diszpécseri felügyelettel.
+                    </p>
+                </div>
+
+                <!-- Kártya 2 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-cyan-500 hover:shadow-xl transition group">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 text-cyan-400 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-hu="Belföldi áruszállítás" data-en="Domestic Transport">Belföldi áruszállítás</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed" data-hu="Országos lefedettségű belföldi fuvarozási feladatok ellátása rövid határidővel, tervezhető érkezési időpontokkal." data-en="Nationwide domestic transport services with short lead times and predictable arrival schedules.">
+                        Országos lefedettségű belföldi fuvarozási feladatok ellátása rövid határidővel, tervezhető érkezési időpontokkal.
+                    </p>
+                </div>
+
+                <!-- Kártya 3 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-cyan-500 hover:shadow-xl transition group">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 text-cyan-400 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-hu="Raklapos és darabáru" data-en="Palletized & General Cargo">Raklapos és darabáru</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed" data-hu="Ponyvás szerelvényeinkkel szakszerűen rögzítve szállítunk raklapos árukat, ipari alapanyagokat és kereskedelmi termékeket." data-en="Safe transport of palletized goods, industrial raw materials, and commercial products using modern tautliner trailers.">
+                        Ponyvás szerelvényeinkkel szakszerűen rögzítve szállítunk raklapos árukat, ipari alapanyagokat és kereskedelmi termékeket.
+                    </p>
+                </div>
+
+                <!-- Kártya 4 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-cyan-500 hover:shadow-xl transition group">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 text-cyan-400 flex items-center justify-center mb-5 group-hover:scale-110 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2" data-hu="Ömlesztett áruk & Raktározás" data-en="Bulk Goods & Warehousing">Ömlesztett áruk & Raktározás</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed" data-hu="Ömlesztett áruk szállítása mellett hernádkaki telephelyünkön 100 raklapos raktárkapacitással is támogatjuk ügyfeleinket." data-en="In addition to bulk cargo transport, we support clients with a 100-pallet warehouse capacity at our Hernádkak depot.">
+                        Ömlesztett áruk szállítása mellett hernádkaki telephelyünkön 100 raklapos raktárkapacitással is támogatjuk ügyfeleinket.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. A VÁLLALKOZÁS TÖRTÉNETE -->
+    <section id="rolunk" class="py-16 sm:py-24 bg-slate-100 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-5">
+                    <span class="text-cyan-600 font-bold tracking-wider uppercase text-xs sm:text-sm" data-hu="Több mint 35 év tapasztalat" data-en="Over 35 Years of Experience">Több mint 35 év tapasztalat</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-900" data-hu="A vállalkozás története: stabilitás és folyamatos fejlődés" data-en="Our Story: Stability and Continuous Growth">A vállalkozás története: stabilitás és folyamatos fejlődés</h2>
+                    <p class="text-slate-600 leading-relaxed text-sm sm:text-base" data-hu="A Tardosi Trans fuvarozási tevékenysége 1989-ben indult el, családi vállalkozásként. A folyamatosan növekvő ügyféligények és a nemzetközi piacra lépés eredményeként 2005-ben megalakult a SEFTA-KER Kft." data-en="Tardosi Trans began its transport operations in 1989 as a family business. Driven by growing client demand and international expansion, SEFTA-KER Kft. was established in 2005.">
+                        A Tardosi Trans fuvarozási tevékenysége <strong>1989-ben</strong> indult el, családi vállalkozásként. A folyamatosan növekvő ügyféligények és a nemzetközi piacra lépés eredményeként <strong>2005-ben megalakult a SEFTA-KER Kft.</strong>
+                    </p>
+                    <p class="text-slate-600 leading-relaxed text-sm sm:text-base" data-hu="Hernádkaki központunkból kiindulva ma már 36 korszerű tehergépjárművel, saját szervizbázissal, raktárkapacitással és minőségirányítási tanúsítványokkal (ISO 9001, ISO 14001) garantáljuk partnereink elégedettségét." data-en="Operating from our Hernádkak headquarters, we now guarantee partner satisfaction with 36 modern trucks, an in-house service base, warehouse capacity, and ISO 9001 & ISO 14001 certifications.">
+                        Hernádkaki központunkból kiindulva ma már 36 korszerű tehergépjárművel, saját szervizbázissal, raktárkapacitással és minőségirányítási tanúsítványokkal (ISO 9001, ISO 14001) garantáljuk partnereink elégedettségét.
+                    </p>
+                </div>
+
+                <!-- Mérföldkövek idővonal -->
+                <div class="lg:col-span-6 space-y-4">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-cyan-500">
+                        <div class="text-xs font-bold text-cyan-600 uppercase">1989</div>
+                        <h4 class="font-bold text-navy-900 text-base sm:text-lg" data-hu="A fuvarozási tevékenység kezdete" data-en="Beginning of Transport Operations">A fuvarozási tevékenység kezdete</h4>
+                        <p class="text-slate-600 text-sm mt-1" data-hu="Elindul a belföldi áruszállítás, megalapozva a megbízható partneri kapcsolatokat." data-en="Domestic freight transport launches, laying the foundation for trusted partnerships.">Elindul a belföldi áruszállítás, megalapozva a megbízható partneri kapcsolatokat.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-600">
+                        <div class="text-xs font-bold text-blue-600 uppercase">2005</div>
+                        <h4 class="font-bold text-navy-900 text-base sm:text-lg" data-hu="SEFTA-KER Kft. megalakulása" data-en="Establishment of SEFTA-KER Kft.">SEFTA-KER Kft. megalakulása</h4>
+                        <p class="text-slate-600 text-sm mt-1" data-hu="Intenzív flottabővítés és nemzetközi fuvarozási üzletág kiépítése." data-en="Intensive fleet expansion and development of the international haulage division.">Intenzív flottabővítés és nemzetközi fuvarozási üzletág kiépítése.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-navy-900">
+                        <div class="text-xs font-bold text-navy-800 uppercase" data-hu="Napjainkban" data-en="Today">Napjainkban</div>
+                        <h4 class="font-bold text-navy-900 text-base sm:text-lg" data-hu="36 járműves Euro 6 flotta és saját telephelyi infrastruktúra" data-en="36-Vehicle Euro 6 Fleet & Full Depot Infrastructure">36 járműves Euro 6 flotta és saját telephelyi infrastruktúra</h4>
+                        <p class="text-slate-600 text-sm mt-1" data-hu="Saját műhely, gumiszerviz, automata kamionmosó, 100 raklapos raktár és ISO tanúsítványok." data-en="In-house workshop, tire service, automatic truck wash, 100-pallet warehouse, and ISO certifications.">Saját műhely, gumiszerviz, automata kamionmosó, 100 raklapos raktár és ISO tanúsítványok.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FLOTTA & 5. GPS ÉS BIZTOSÍTÁS -->
+    <section id="flotta" class="py-16 sm:py-24 bg-navy-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-cyan-400 font-bold tracking-wider uppercase text-xs sm:text-sm" data-hu="Technológia és biztonság" data-en="Technology & Safety">Technológia és biztonság</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold mt-2" data-hu="Korszerű járműpark, GPS-követés és teljes biztosítás" data-en="Modern Fleet, GPS Tracking & Full Insurance">Korszerű járműpark, GPS-követés és teljes biztosítás</h2>
+                <p class="text-slate-300 mt-3 text-sm sm:text-base" data-hu="Minden szállítmányt modern környezetvédelmi normáknak megfelelő járművekkel és valós idejű felügyelettel védünk." data-en="Every shipment is protected by vehicles meeting strict environmental standards and real-time supervision.">
+                    Minden szállítmányt modern környezetvédelmi normáknak megfelelő járművekkel és valós idejű felügyelettel védünk.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Flotta blokk -->
+                <div class="bg-navy-800/90 border border-slate-700 rounded-2xl p-7">
+                    <div class="text-cyan-400 text-3xl font-extrabold mb-2">36 db</div>
+                    <h3 class="text-xl font-bold mb-3" data-hu="Volvo és DAF Euro 6 Flotta" data-en="Volvo & DAF Euro 6 Fleet">Volvo és DAF Euro 6 Flotta</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4" data-hu="Fiatal, rendszeresen karbantartott Volvo és DAF nyerges vontatóink alacsony károsanyag-kibocsátással és kiemelkedő üzembiztonsággal teljesítenek minden fuvart." data-en="Our modern, regularly serviced Volvo and DAF tractor units deliver low emissions and outstanding operational reliability on every route.">
+                        Fiatal, rendszeresen karbantartott Volvo és DAF nyerges vontatóink alacsony károsanyag-kibocsátással és kiemelkedő üzembiztonsággal teljesítenek minden fuvart.
+                    </p>
+                    <ul class="space-y-2 text-xs sm:text-sm text-cyan-300">
+                        <li>✓ Euro 6 környezetvédelmi besorolás</li>
+                        <li data-hu="✓ Saját telephelyi szervizháttér" data-en="✓ In-house depot maintenance">✓ Saját telephelyi szervizháttér</li>
+                    </ul>
+                </div>
+
+                <!-- GPS blokk -->
+                <div class="bg-navy-800/90 border border-cyan-500/40 rounded-2xl p-7 shadow-lg shadow-cyan-500/10">
+                    <div class="text-cyan-400 text-3xl font-extrabold mb-2">0–24 GPS</div>
+                    <h3 class="text-xl font-bold mb-3" data-hu="Valós idejű járműkövetés" data-en="Real-Time Vehicle Tracking">Valós idejű járműkövetés</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4" data-hu="Minden járművünk műholdas GPS-nyomkövető rendszerrel van felszerelve, így megbízóink bármikor pontos tájékoztatást kaphatnak az áru aktuális helyzetéről." data-en="Every vehicle is equipped with satellite GPS tracking, allowing our clients to receive accurate status updates on their cargo at any time.">
+                        Minden járművünk műholdas GPS-nyomkövető rendszerrel van felszerelve, így megbízóink bármikor pontos tájékoztatást kaphatnak az áru aktuális helyzetéről.
+                    </p>
+                    <ul class="space-y-2 text-xs sm:text-sm text-cyan-300">
+                        <li data-hu="✓ Pontos várható érkezési idő (ETA)" data-en="✓ Accurate Estimated Time of Arrival (ETA)">✓ Pontos várható érkezési idő (ETA)</li>
+                        <li data-hu="✓ Folyamatos fuvarszervezői felügyelet" data-en="✓ Continuous dispatch monitoring">✓ Folyamatos fuvarszervezői felügyelet</li>
+                    </ul>
+                </div>
+
+                <!-- Biztosítás és ISO blokk -->
+                <div class="bg-navy-800/90 border border-slate-700 rounded-2xl p-7">
+                    <div class="text-cyan-400 text-3xl font-extrabold mb-2">100 000 €</div>
+                    <h3 class="text-xl font-bold mb-3" data-hu="CMR & BÁF Biztosítás + ISO" data-en="CMR & Domestic Insurance + ISO">CMR & BÁF Biztosítás + ISO</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4" data-hu="Szállítmányai biztonságát 100 000 eurós nemzetközi CMR-biztosítás és belföldi árufuvarozói felelősségbiztosítás (BÁF) garantálja." data-en="The safety of your cargo is guaranteed by €100,000 international CMR insurance and domestic carrier liability insurance (BÁF).">
+                        Szállítmányai biztonságát 100 000 eurós nemzetközi CMR-biztosítás és belföldi árufuvarozói felelősségbiztosítás (BÁF) garantálja.
+                    </p>
+                    <ul class="space-y-2 text-xs sm:text-sm text-cyan-300">
+                        <li>✓ ISO 9001 minőségirányítás</li>
+                        <li>✓ ISO 14001 környezetirányítás</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TELEPHELYI SZOLGÁLTATÁSOK -->
+    <section id="telephely" class="py-16 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-cyan-600 font-bold tracking-wider uppercase text-xs sm:text-sm" data-hu="Hernádkaki bázis" data-en="Hernádkak Depot">Hernádkaki bázis</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-900 mt-2" data-hu="Telephelyi szolgáltatások" data-en="On-Site Depot Services">Telephelyi szolgáltatások</h2>
+                </div>
+                <p class="text-slate-600 text-sm sm:text-base max-w-md mt-3 md:mt-0" data-hu="Saját műszaki hátterünk nemcsak flottánk üzembiztonságát garantálja, hanem külsős partnereink számára is elérhető." data-en="Our in-house technical facilities ensure fleet reliability and are also available to external partners.">
+                    Saját műszaki hátterünk nemcsak flottánk üzembiztonságát garantálja, hanem külsős partnereink számára is elérhető.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50">
+                    <div class="text-2xl mb-3">🔧</div>
+                    <h3 class="font-bold text-navy-900 text-lg mb-2" data-hu="Tehergépjármű szerviz" data-en="Heavy Truck Service">Tehergépjármű szerviz</h3>
+                    <p class="text-slate-600 text-sm" data-hu="Teljes körű műszaki átvizsgálás, javítás és karbantartás korszerű szervizállásokon." data-en="Comprehensive technical inspection, repair, and maintenance in modern service bays.">Teljes körű műszaki átvizsgálás, javítás és karbantartás korszerű szervizállásokon.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50">
+                    <div class="text-2xl mb-3">🛞</div>
+                    <h3 class="font-bold text-navy-900 text-lg mb-2" data-hu="Gumiszerviz" data-en="Tire Service">Gumiszerviz</h3>
+                    <p class="text-slate-600 text-sm" data-hu="Tehergépjármű és pótkocsi abroncsok szerelése, javítása és centrírozása." data-en="Mounting, repair, and balancing of heavy truck and trailer tires.">Tehergépjármű és pótkocsi abroncsok szerelése, javítása és centrírozása.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50">
+                    <div class="text-2xl mb-3">🚿</div>
+                    <h3 class="font-bold text-navy-900 text-lg mb-2" data-hu="Automata kamionmosó" data-en="Automatic Truck Wash">Automata kamionmosó</h3>
+                    <p class="text-slate-600 text-sm" data-hu="Gyors, alapos és kíméletes külső tisztítás nyerges szerelvények és teherautók részére." data-en="Fast, thorough, and gentle exterior cleaning for articulated lorries and trucks.">Gyors, alapos és kíméletes külső tisztítás nyerges szerelvények és teherautók részére.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50">
+                    <div class="text-2xl mb-3">🏭</div>
+                    <h3 class="font-bold text-navy-900 text-lg mb-2" data-hu="100 raklapos raktár" data-en="100-Pallet Warehouse">100 raklapos raktár</h3>
+                    <p class="text-slate-600 text-sm" data-hu="Biztonságos átrakodási és rövid- vagy hosszútávú raktározási lehetőség telephelyünkön." data-en="Secure cross-docking and short- or long-term warehousing at our facility.">Biztonságos átrakodási és rövid- vagy hosszútávú raktározási lehetőség telephelyünkön.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FUVAROZÁSI FOLYAMAT -->
+    <section id="folyamat" class="py-16 sm:py-24 bg-slate-100 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-cyan-600 font-bold tracking-wider uppercase text-xs sm:text-sm" data-hu="Átlátható együttműködés" data-en="Transparent Workflow">Átlátható együttműködés</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-navy-900 mt-2" data-hu="Hogyan zajlik a fuvarozás?" data-en="How Our Transport Process Works">Hogyan zajlik a fuvarozás?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm relative">
+                    <div class="w-9 h-9 rounded-full bg-cyan-500 text-navy-950 font-extrabold flex items-center justify-center mb-4">1</div>
+                    <h3 class="font-bold text-navy-900 mb-2" data-hu="Ajánlatkérés & Tervezés" data-en="Quote & Planning">Ajánlatkérés & Tervezés</h3>
+                    <p class="text-slate-600 text-sm" data-hu="Megadja a felrakó, lerakó helyét és az áru paramétereit, fuvarszervezőink pedig gyorsan kalkulálnak." data-en="Provide loading/unloading locations and cargo details; our dispatchers respond promptly.">Megadja a felrakó, lerakó helyét és az áru paramétereit, fuvarszervezőink pedig gyorsan kalkulálnak.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm relative">
+                    <div class="w-9 h-9 rounded-full bg-cyan-500 text-navy-950 font-extrabold flex items-center justify-center mb-4">2</div>
+                    <h3 class="font-bold text-navy-900 mb-2" data-hu="Jármű kiállítás & Felrakodás" data-en="Dispatch & Loading">Jármű kiállítás & Felrakodás</h3>
+                    <p class="text-slate-600 text-sm" data-hu="A megbeszélt időpontban tiszta, műszakilag ellenőrzött Euro 6 szerelvénnyel állunk ki a felrakóra." data-en="A clean, inspected Euro 6 vehicle arrives on schedule at the loading point.">A megbeszélt időpontban tiszta, műszakilag ellenőrzött Euro 6 szerelvénnyel állunk ki a felrakóra.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm relative">
+                    <div class="w-9 h-9 rounded-full bg-cyan-500 text-navy-950 font-extrabold flex items-center justify-center mb-4">3</div>
+                    <h3 class="font-bold text-navy-900 mb-2" data-hu="GPS-követett szállítás" data-en="GPS-Tracked Transit">GPS-követett szállítás</h3>
+                    <p class="text-slate-600 text-sm" data-hu="A szállítás teljes ideje alatt nyomon követjük a szerelvényt és tájékoztatjuk a haladásról." data-en="We monitor the vehicle throughout transit and keep you updated on progress.">A szállítás teljes ideje alatt nyomon követjük a szerelvényt és tájékoztatjuk a haladásról.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm relative">
+                    <div class="w-9 h-9 rounded-full bg-cyan-500 text-navy-950 font-extrabold flex items-center justify-center mb-4">4</div>
+                    <h3 class="font-bold text-navy-900 mb-2" data-hu="Pontos lerakodás & CMR" data-en="Punctual Delivery & CMR">Pontos lerakodás & CMR</h3>
+                    <p class="text-slate-600 text-sm" data-hu="Sértetlen áruátadás a célállomáson, leigazolt fuvarokmányok gyors visszajuttatásával." data-en="Damage-free delivery at destination with rapid return of signed CMR documentation.">Sértetlen áruátadás a célállomáson, leigazolt fuvarokmányok gyors visszajuttatásával.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. KAPCSOLAT ÉS 9. AJÁNLATKÉRŐ ŰRLAP -->
+    <section id="kapcsolat" class="py-16 sm:py-24 bg-navy-950 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Kapcsolati adatok -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div>
+                        <span class="text-cyan-400 font-bold tracking-wider uppercase text-xs sm:text-sm" data-hu="Elérhetőségeink" data-en="Contact Details">Elérhetőségeink</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold mt-2" data-hu="Vegye fel velünk a kapcsolatot" data-en="Get in Touch With Us">Vegye fel velünk a kapcsolatot</h2>
+                        <p class="text-slate-400 mt-3 text-sm" data-hu="Kérdése van fuvarkapacitással, raktározással vagy telephelyi szolgáltatásokkal kapcsolatban? Keressen minket bizalommal!" data-en="Have questions about freight capacity, warehousing, or depot services? Contact us directly!">
+                            Kérdése van fuvarkapacitással, raktározással vagy telephelyi szolgáltatásokkal kapcsolatban? Keressen minket bizalommal!
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 bg-navy-900 p-6 rounded-2xl border border-slate-800">
+                        <div>
+                            <div class="text-xs text-slate-400 uppercase font-semibold" data-hu="Cégnév" data-en="Company Name">Cégnév</div>
+                            <div class="font-bold text-white">Tardosi Trans – SEFTA-KER Kft.</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 uppercase font-semibold" data-hu="Telephely / Cím" data-en="Depot Address">Telephely / Cím</div>
+                            <div class="text-slate-200">H-3563 Hernádkak, külterület 027/34. hrsz.</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 uppercase font-semibold" data-hu="Telefon" data-en="Phone">Telefon</div>
+                            <a href="tel:+36703754000" class="text-cyan-400 hover:text-cyan-300 font-bold text-lg">+36 70 375 4000</a>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-400 uppercase font-semibold">E-mail</div>
+                            <a href="mailto:info@tardosi.hu" class="text-cyan-400 hover:text-cyan-300 font-bold">info@tardosi.hu</a>
+                        </div>
+                        <div class="pt-2 border-t border-slate-800 text-xs text-slate-400">
+                            <span data-hu="Hivatalos forrásoldal:" data-en="Official source website:">Hivatalos forrásoldal:</span> 
+                            <a href="https://www.tardosi.hu/" target="_blank" rel="noopener noreferrer" class="underline hover:text-cyan-400">www.tardosi.hu</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ajánlatkérő űrlap (mailto alapú) -->
+                <div id="ajanlat" class="lg:col-span-7">
+                    <div class="bg-white text-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl">
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-navy-900 mb-2" data-hu="Online fuvardíj ajánlatkérés" data-en="Online Freight Quote Request">Online fuvardíj ajánlatkérés</h3>
+                        <p class="text-slate-500 text-xs sm:text-sm mb-6" data-hu="Töltse ki az alábbi adatokat! A gombra kattintva megnyílik az Ön levelezőprogramja az előre kitöltött ajánlatkérő üzenettel." data-en="Fill out the details below. Clicking the button will open your default email client with a pre-filled quote request.">
+                            Töltse ki az alábbi adatokat! A gombra kattintva megnyílik az Ön levelezőprogramja az előre kitöltött ajánlatkérő üzenettel.
+                        </p>
+
+                        <form id="quoteForm" onsubmit="sendQuoteMail(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-hu="Cégnév / Név *" data-en="Company / Name *">Cégnév / Név *</label>
+                                    <input type="text" id="qName" required placeholder="Pl. Minta Logisztika Kft." class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-hu="Telefonszám *" data-en="Phone Number *">Telefonszám *</label>
+                                    <input type="tel" id="qPhone" required placeholder="+36 30 123 4567" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none text-sm">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-hu="Felrakó helye (Ország, Város) *" data-en="Loading Location (Country, City) *">Felrakó helye (Ország, Város) *</label>
+                                    <input type="text" id="qFrom" required placeholder="Pl. HU-3563 Hernádkak" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-hu="Lerakó helye (Ország, Város) *" data-en="Unloading Location (Country, City) *">Lerakó helye (Ország, Város) *</label>
+                                    <input type="text" id="qTo" required placeholder="Pl. DE-80331 München" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none text-sm">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-hu="Áru típusa és súlya" data-en="Cargo Type & Weight">Áru típusa és súlya</label>
+                                    <input type="text" id="qCargo" placeholder="Pl. 33 EUR raklap, 22 tonna" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-hu="Tervezett dátum" data-en="Planned Date">Tervezett dátum</label>
+                                    <input type="date" id="qDate" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1" data-hu="Megjegyzés" data-en="Additional Notes">Megjegyzés</label>
+                                <textarea id="qNote" rows="3" placeholder="Egyéb igény (pl. raklapcsere, raktározás)..." class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-navy-900 hover:bg-navy-800 text-cyan-400 font-bold text-sm sm:text-base transition shadow-lg flex items-center justify-center space-x-2">
+                                <span>✉️</span>
+                                <span data-hu="Ajánlatkérés megnyitása levelezőben" data-en="Open Quote Request in Email App">Ajánlatkérés megnyitása levelezőben</span>
+                            </button>
+                            <p class="text-[11px] text-slate-400 text-center" data-hu="Megjegyzés: Ez a bemutató űrlap nem tárol adatokat szerveren, kizárólag a készülék levelezőprogramját nyitja meg." data-en="Note: This demo form does not store data on any server; it only opens your device's email application.">
+                                Megjegyzés: Ez a bemutató űrlap nem tárol adatokat szerveren, kizárólag a készülék levelezőprogramját nyitja meg.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LÁBLÉC -->
+    <footer class="bg-navy-950 border-t border-slate-800 text-slate-400 py-8 px-4 text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-amber-400">NEM HIVATALOS BEMUTATÓ KONCEPCIÓ – NEM A CÉG MEGBÍZÁSÁBÓL KÉSZÜLT.</p>
+                <p class="mt-1 text-slate-500" data-hu="A bemutatott adatok a nyilvános tardosi.hu weboldalról származnak. Nyilvános üzleti felhasználás előtt a vállalkozás írásos jóváhagyása szükséges." data-en="Displayed information is sourced from the public tardosi.hu website. Written company approval is required prior to public commercial use.">
+                    A bemutatott adatok a nyilvános tardosi.hu weboldalról származnak. Nyilvános üzleti felhasználás előtt a vállalkozás írásos jóváhagyása szükséges.
+                </p>
+            </div>
+            <div class="shrink-0">
+                <span class="text-slate-400">Design & Concept by </span>
+                <a href="https://nagy04840-sudo.github.io/transport-digital-/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 font-bold hover:underline">Transport Digital</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT (Nyelvváltó, Mobil menü, Mailto űrlap) -->
+    <script>
+        let currentLang = 'hu';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'hu' ? 'en' : 'hu';
+            document.documentElement.lang = currentLang;
+            document.getElementById('langLabel').textContent = currentLang === 'hu' ? 'EN' : 'HU';
+
+            const elements = document.querySelectorAll('[data-hu][data-en]');
+            elements.forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.add('hidden');
+        }
+
+        function sendQuoteMail(event) {
+            event.preventDefault();
+            const name = document.getElementById('qName').value.trim();
+            const phone = document.getElementById('qPhone').value.trim();
+            const from = document.getElementById('qFrom').value.trim();
+            const to = document.getElementById('qTo').value.trim();
+            const cargo = document.getElementById('qCargo').value.trim();
+            const date = document.getElementById('qDate').value;
+            const note = document.getElementById('qNote').value.trim();
+
+            const subject = currentLang === 'hu'
+                ? `Fuvardíj ajánlatkérés – ${from} -> ${to} (${name})`
+                : `Freight Quote Request – ${from} -> ${to} (${name})`;
+
+            const body = currentLang === 'hu'
+                ? `Tisztelt Tardosi Trans!
+
+Az alábbi szállítási feladatra szeretnék ajánlatot kérni:
+
+- Cégnév / Név: ${name}
+- Telefonszám: ${phone}
+- Felrakó helye: ${from}
+- Lerakó helye: ${to}
+- Áru típusa / súlya: ${cargo || 'Nincs megadva'}
+- Tervezett dátum: ${date || 'Nincs megadva'}
+- Megjegyzés: ${note || '-'}
+
+Üdvözlettel,
+${name}`
+                : `Dear Tardosi Trans,
+
+I would like to request a freight quote for the following shipment:
+
+- Company / Name: ${name}
+- Phone: ${phone}
+- Loading location: ${from}
+- Unloading location: ${to}
+- Cargo type / weight: ${cargo || 'Not specified'}
+- Planned date: ${date || 'Not specified'}
+- Notes: ${note || '-'}
+
+Best regards,
+${name}`;
+
+            const mailtoUrl = `mailto:info@tardosi.hu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoUrl;
+        }
+    </script>
+</body>
+</html>
